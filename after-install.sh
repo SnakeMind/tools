@@ -34,7 +34,7 @@ export DISPLAY=:0.0
 export TERM=xterm
 
 ## Disable Gnome shizzle
-(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Disable Gnome shit."
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Disable Gnome shit..."
 timeout 5 killall -w /usr/lib/apt/methods/http > /dev/null 2>&1
 xset s 0 0
 xset s off
@@ -42,4 +42,33 @@ gsettings set org.gnome.desktop.session idle-delay 0
 
 sleep 5s
 ## Check internet access
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Checking Internet Access..."
+for i in {1..10}; do ping -c 1 -W ${i} www.google.com &>/dev/null && break; done
+if [[ "$?" -ne 0 ]]; then
+  echo -e ' '${RED}'[!]'${RESET}" ${RED}Issues with the internet? Go fix..." 1>&2
+  exit 1
+else
+  echo -e " ${YELLOW}[i]${RESET} ${YELLOW}Detected Internet access${RESET}" 1>&2
+fi
 
+sleep 5s
+## Enable default network repositories ~ http://docs.kali.org/general-use/kali-linux-sources-list-repositories
+(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Enabling default OS ${GREEN}network repositories${RESET}"
+
+##- Add network repositories
+file=/etc/apt/sources.list; [ -e "${file}" ] && cp -n $file{,.bkup}
+([[ -e "${file}" && "$(tail -c 1 ${file})" != "" ]]) && echo >> "${file}"
+
+##- Main
+grep -q '^deb .* kali-rolling' "${file}" 2>/dev/null \
+  || echo -e "\n\n# Kali Rolling\ndeb http://http.kali.org/kali kali-rolling main contrib non-free" >> "${file}"
+
+##- Source
+grep -q '^deb-src .* kali-rolling' "${file}" 2>/dev/null \
+  || echo -e "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" >> "${file}"
+
+##- Disable CD repositories
+sed -i '/kali/ s/^\( \|\t\|\)deb cdrom/#deb cdrom/g' "${file}"
+
+##- incase we were interrupted
+dpkg --configure -a
