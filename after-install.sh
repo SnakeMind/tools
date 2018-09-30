@@ -100,7 +100,7 @@ EOF
 
 sleep 5s
 ## Enable default network repositories ~ http://docs.kali.org/general-use/kali-linux-sources-list-repositories
-(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Enabling default OS ${GREEN}network repositories${RESET}"
+(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Enabling default OS repositories"
 
 ##- Add network repositories
 file=/etc/apt/sources.list; [ -e "${file}" ] && cp -n $file{,.bkup}
@@ -152,7 +152,6 @@ export DEBIAN_FRONTEND=noninteractive
 apt -qq update && APT_LISTCHANGES_FRONTEND=none apt -o Dpkg::Options::="--force-confnew" -y dist-upgrade --fix-missing 2>&1
 
 for FILE in clean autoremove; do apt -y -qq "${FILE}"; done
-fi
 
 sleep 5s
 ## Install kernel headers
