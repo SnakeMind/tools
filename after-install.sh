@@ -35,6 +35,7 @@ export TERM=xterm
 ## Disable Gnome shizzle
 (( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Disable Gnome shit..."
 timeout 5 killall -w /usr/lib/apt/methods/http > /dev/null 2>&1
+export DISPLAY=:0.0
 xset s 0 0
 xset s off
 gsettings set org.gnome.desktop.session idle-delay 0
@@ -154,7 +155,7 @@ for FILE in clean autoremove; do apt -y -qq "${FILE}"; done
 
 sleep 5s
 ## Install kernel headers
-(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}kernel headers${RESET}"
+(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing kernel headers"
 apt -y -qq install gcc "linux-headers-$(uname -r)"
 if [[ $? -ne 0 ]]; then
   echo -e ' '${RED}'[!]'" There was an issue installing kernel headers${RESET}" 1>&2
@@ -201,10 +202,11 @@ finish_time=$(date +%s)
 echo -e "\n\n ${YELLOW}[i]${RESET} Time (roughly) taken: ${YELLOW}$(( $(( finish_time - start_time )) / 60 )) minutes${RESET}"
 
 ## Done!
-echo -e "\n ${YELLOW}[!]${RESET} So. We're done. Please:"
-echo -e " ${YELLOW}[i]${RESET} + Setup git:   ${YELLOW}git config --global user.name <name>;git config --global user.email <email>${RESET}"
-echo -e " ${YELLOW}[i]${RESET} + ${YELLOW}Reboot${RESET}"
+echo -e "\n ${YELLOW}[i]${RESET} So. We're done. Please:"
+echo -e " ${YELLOW}[i]${RESET} + Setup git: git config --global user.name <name>;git config --global user.email <email>"
+echo -e " ${YELLOW}[i]${RESET} + Reboot"
 echo -e " ${YELLOW}[i]${RESET} + Take a snapshot"
+echo -e " ${YELLOW}[i]${RESET} + ${YELLOW}If the update installed new kernel modules, re-run the script after reboot for fixes!!${RESET}"
 
-echo -e '\n'${BLUE}'[*]'${RESET}' '${BOLD}'Done!'${RESET}'\n\a'
+echo -e '\n'${GREEN}'[*]'${RESET}' '${BOLD}'Done!'${RESET}'\n\a'
 exit 0
