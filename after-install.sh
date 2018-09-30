@@ -51,6 +51,53 @@ else
   echo -e " ${YELLOW}[i]${RESET} ${YELLOW}Detected Internet access${RESET}" 1>&2
 fi
 
+## Create afterboot file
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Placing files for afterboot and aliases."
+
+##- Shared Folders script
+file=/usr/local/sbin/mount-shared-folders; [ -e "${file}" ] && cp -n $file{,.bkup}
+cat <<EOF > "${file}" \
+    || echo -e ' '${RED}'[!] Issue with writing file'${RESET} 1>&2
+#!/bin/bash
+
+vmware-hgfsclient | while read folder; do
+  echo "[i] Mounting \${folder}   (/mnt/hgfs/\${folder})"
+  mkdir -p "/mnt/hgfs/\${folder}"
+  umount -f "/mnt/hgfs/\${folder}" 2>/dev/null
+  vmhgfs-fuse -o allow_other -o auto_unmount ".host:/\${folder}" "/mnt/hgfs/\${folder}"
+done
+
+sleep 2s
+EOF
+chmod +x "${file}"
+
+##- Afterboot file
+file=/root/afterboot.sh; [ -e "${file}" ] && cp -n $file{,.bkup}
+cat <<EOF > "${file}" \
+    || echo -e ' '${RED}'[!] Issue with writing file'${RESET} 1>&2
+#!/bin/bash
+
+echo -e "** Mounting Stack **"
+bash /usr/local/sbin/mount-shared-folders
+echo -e "** PostgreSQL **"
+systemctl restart postgresql
+sleep 1s
+echo ' '
+echo "** Okay... We're done! **\n"
+
+EOF
+chmod +x "${file}"
+
+sleep 2s
+##- Create .bash_alias file
+file=/root/.bash_aliases; [ -e "${file}" ] && cp -n $file{,.bkup}
+cat <<EOF > "${file}" \
+    || echo -e ' '${RED}'[!] Issue with writing file'${RESET} 1>&2
+alias afterboot='bash /root/afterboot.sh'
+alias nmapinitial='nmap -sS -sV -A -v -oA initial '
+alias nmapfull='nmap -sS -sV -A -v -p- -oA full '
+EOF
+
 sleep 5s
 ## Enable default network repositories ~ http://docs.kali.org/general-use/kali-linux-sources-list-repositories
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Enabling default OS ${GREEN}network repositories${RESET}"
