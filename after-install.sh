@@ -201,7 +201,7 @@ finish_time=$(date +%s)
 echo -e "\n\n ${YELLOW}[i]${RESET} Time (roughly) taken: ${YELLOW}$(( $(( finish_time - start_time )) / 60 )) minutes${RESET}"
 
 ## Done!
-echo -e "\n ${YELLOW}[!]${RESET} So. We're done. Please:
+echo -e "\n ${YELLOW}[!]${RESET} So. We're done. Please:"
 echo -e " ${YELLOW}[i]${RESET} + Setup git:   ${YELLOW}git config --global user.name <name>;git config --global user.email <email>${RESET}"
 echo -e " ${YELLOW}[i]${RESET} + ${YELLOW}Reboot${RESET}"
 echo -e " ${YELLOW}[i]${RESET} + Take a snapshot"
