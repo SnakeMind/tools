@@ -35,9 +35,6 @@ export TERM=xterm
 ## Disable Gnome shizzle
 (( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Disable Gnome shit..."
 timeout 5 killall -w /usr/lib/apt/methods/http > /dev/null 2>&1
-export DISPLAY=:0.0
-xset s 0 0
-xset s off
 gsettings set org.gnome.desktop.session idle-delay 0
 
 sleep 5s
