@@ -1,4 +1,15 @@
 #/bin/sh
+#-Metadata-----------------------------------------------------------------------#
+#  Filename: treesize                                     (Updated: 2018-12-05)  #
+#-Info---------------------------------------------------------------------------#
+#  A simple “treesize” shell script for Linux                                    #
+#-Notes--------------------------------------------------------------------------#
+#  Put this in /bin/treesize and make it executable.                             #
+#                                                                                #
+#  Made by Andrew Clarke:                                                        #
+#  https://blog.aclarke.eu/2011/09/21/a-simple-treesize-shell-script-for-linux/  #
+#--------------------------------------------------------------------------------#
+
 du -k --max-depth=1 | sort -nr | awk '
      BEGIN {
         split("KB,MB,GB,TB", Units, ",");
