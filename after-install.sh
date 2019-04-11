@@ -175,6 +175,21 @@ sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT=.*/GRUB_CMDLINE_LINUX_DEFAULT="vga=0x0318"
 update-grub
 
 sleep 5s
+## Get all for Bloodhound
+((STAGE++)); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Cloning all for Bloodhound" 
+mkdir -p /opt/Bloodhound
+pushd /opt/Bloodhound
+git clone https://github.com/BloodHoundAD/BloodHound.git
+git clone https://github.com/BloodHoundAD/BloodHound-Tools.git
+git clone https://github.com/PowerShellMafia/PowerSploit.git
+pip install bloodhound
+popd
+
+sleep 5s
+##
+## This is the last section, keep at bottom!
+##
+
 ## Clean the system
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Cleaning the system"
 
