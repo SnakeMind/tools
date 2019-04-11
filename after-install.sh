@@ -181,6 +181,14 @@ sleep 5s
 apt -y -qq install kali-linux-full
 
 sleep 5s
+## Reconfigure SSH
+pushd /etc/ssh/
+dpkg-reconfigure openssh-server
+systemctl enable ssh
+systemctl restart ssh
+popd
+
+sleep 5s
 ## Configure GRUB
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Configuring GRUB boot manager"
 grubTimeout=5
