@@ -93,6 +93,15 @@ cat <<EOF > "${file}" \
 alias afterboot='bash /root/afterboot.sh'
 alias nmapinitial='nmap -sS -sV -A -v -oA initial '
 alias nmapfull='nmap -sS -sV -A -v -p- -oA full '
+function apt-updater {
+	apt update &&
+	apt dist-upgrade -Vy &&
+	apt autoremove -y &&
+	apt autoclean &&
+	apt clean &&
+	reboot
+	}
+
 EOF
 
 sleep 5s
@@ -126,6 +135,13 @@ if [[ "$?" -ne 0 ]]; then
   curl -sI http://http.kali.org/README
   exit 1
 fi
+
+##- Tor
+echo -e "deb https://deb.torproject.org/torproject.org stretch main" > /etc/apt/sources.list.d/tor.list
+echo -e "deb-src https://deb.torproject.org/torproject.org stretch main" >> /etc/apt/sources.list.d/tor.list
+wget -q -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | apt-key add -
+apt -qq update
+apt -qq install tor deb.torproject.org-keyring
 
 sleep 5s
 ## Install VMware tools
