@@ -137,6 +137,7 @@ if [[ "$?" -ne 0 ]]; then
 fi
 
 ##- Tor
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL})  Installing TOR"
 echo -e "deb https://deb.torproject.org/torproject.org stretch main" > /etc/apt/sources.list.d/tor.list
 echo -e "deb-src https://deb.torproject.org/torproject.org stretch main" >> /etc/apt/sources.list.d/tor.list
 wget -q -O- https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | apt-key add -
@@ -182,6 +183,7 @@ apt -y -qq install kali-linux-full
 
 sleep 5s
 ## Reconfigure SSH
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL})  Re-configuring SSH"
 pushd /etc/ssh/
 dpkg-reconfigure openssh-server
 systemctl enable ssh
@@ -211,6 +213,7 @@ popd
 
 sleep 5s
 ## RubberDucky tools for offline payload generation
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL})  Cloning Rubberducky tools" 
 pushd /opt
 git clone https://github.com/hak5darren/USB-Rubber-Ducky
 popd
