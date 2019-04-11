@@ -210,6 +210,12 @@ pip install bloodhound
 popd
 
 sleep 5s
+## RubberDucky tools for offline payload generation
+pushd /opt
+git clone https://github.com/hak5darren/USB-Rubber-Ducky
+popd
+
+sleep 5s
 ##
 ## This is the last section, keep at bottom!
 ##
