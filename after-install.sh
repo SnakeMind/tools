@@ -264,6 +264,7 @@ git clone https://github.com/tennc/webshell.git
 git clone https://github.com/sophron/wifiphisher.git
 git clone https://github.com/dxa4481/WPA2-HalfHandshake-Crack.git
 git clone https://github.com/frohoff/ysoserial.git
+git clone https://github.com/GDSSecurity/Windows-Exploit-Suggester.git
 popd
 
 sleep 5s
