@@ -98,8 +98,7 @@ function apt-updater {
 	apt dist-upgrade -Vy &&
 	apt autoremove -y &&
 	apt autoclean &&
-	apt clean &&
-	reboot
+	apt clean
 	}
 
 EOF
@@ -209,6 +208,62 @@ git clone https://github.com/BloodHoundAD/BloodHound.git
 git clone https://github.com/BloodHoundAD/BloodHound-Tools.git
 git clone https://github.com/PowerShellMafia/PowerSploit.git
 pip install bloodhound
+popd
+
+sleep 5s
+## Cloning basic tools
+((STAGE++)); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Cloning Github Repos" 
+pushd /opt
+git clone https://github.com/mubix/pykek.git
+git clone https://github.com/vrana/adminer.git
+git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
+git clone https://github.com/chokepoint/azazel.git
+git clone https://github.com/jseidl/Babadook.git
+git clone https://github.com/NetSPI/cmdsql.git
+git clone https://github.com/galkan/crowbar
+git clone https://github.com/Hood3dRob1n/CVE-2016-3714.git
+git clone https://github.com/gebl/dirtycow-docker-vdso.git
+git clone https://github.com/breenmachine/dnsftp.git
+git clone https://github.com/mfontanini/dot11decrypt.git
+git clone https://github.com/BlackMathIT/Esteemaudit-Metasploit.git
+git clone https://github.com/offensive-security/exploit-database-papers.git
+git clone https://github.com/fuzzdb-project/fuzzdb.git
+git clone https://github.com/aleaxit/gmpy.git
+git clone https://github.com/nullmode/gnmap-parser.git
+git clone https://github.com/OJ/gobuster.git
+git clone https://github.com/wireghoul/graudit.git
+git clone https://github.com/NerdyProjects/hostapd-wpe-extended.git
+git clone https://github.com/SilentGhostX/HT-WPS-Breaker.git
+git clone https://github.com/inquisb/icmpsh.git
+git clone https://github.com/gojhonny/InSpy.git
+git clone https://github.com/matthiaskaiser/jmet.git
+git clone https://github.com/rastating/jooforce.git
+git clone https://github.com/libyal/libesedb.git
+git clone https://github.com/hellman/libnum.git
+git clone https://github.com/xillwillx/MiniReverse_Shell_With_Parameters.git
+git clone https://github.com/worawit/MS17-010.git
+git clone https://github.com/sullo/nikto.git
+git clone https://github.com/codingo/NoSQLMap.git
+git clone https://github.com/csababarta/ntdsxtract.git
+git clone https://github.com/superkojiman/onetwopunch.git
+git clone https://github.com/adon90/openssl_wfuzz.git
+git clone https://github.com/s7ephen/pfi.git
+git clone https://github.com/rofl0r/proxychains-ng.git
+git clone https://github.com/n1nj4sec/pupy.git
+git clone https://github.com/infodox/python-pty-shells.git
+git clone https://github.com/codingo/Reconnoitre.git
+git clone https://github.com/sensepost/reGeorg.git
+git clone https://github.com/trustedsec/ridenum
+git clone https://github.com/ripsscanner/rips.git
+git clone https://github.com/foxglovesec/RottenPotato.git
+git clone https://github.com/Ganapati/RsaCtfTool.git
+git clone https://github.com/danielmiessler/SecLists.git
+git clone https://github.com/Vozzie/uacscript.git
+git clone https://github.com/trustedsec/unicorn.git
+git clone https://github.com/tennc/webshell.git
+git clone https://github.com/sophron/wifiphisher.git
+git clone https://github.com/dxa4481/WPA2-HalfHandshake-Crack.git
+git clone https://github.com/frohoff/ysoserial.git
 popd
 
 sleep 5s
