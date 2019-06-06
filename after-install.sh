@@ -266,6 +266,7 @@ git clone https://github.com/dxa4481/WPA2-HalfHandshake-Crack.git
 git clone https://github.com/frohoff/ysoserial.git
 git clone https://github.com/GDSSecurity/Windows-Exploit-Suggester.git
 git clone https://github.com/kennyn510/wpa2-wordlists.git
+git clone https://github.com/micheleg/dash-to-dock.git
 popd
 
 sleep 5s
