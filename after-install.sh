@@ -278,6 +278,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock dock-position RIGHT
 gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'ALL_WINDOWS'
 gsettings set org.gnome.shell.extensions.dash-to-dock height-fraction 1
+gsettings set org.gnome.shell.extensions.dash-to-dock extend-height true
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode FIXED
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action minimize
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 28
