@@ -271,6 +271,7 @@ popd
 sleep 5s
 ## Setting dock things
 (( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Setting the Dock" 
+gnome-shell-extension-tool -e dash-to-dock
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
 gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
