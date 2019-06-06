@@ -146,7 +146,7 @@ apt -qq install tor deb.torproject.org-keyring
 sleep 5s
 ## Install VMware tools
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing open-vm-tools and shizzle."
-apt -qq install open-vm-tools open-vm-tools-desktop fuse make htop -y
+apt -qq install open-vm-tools open-vm-tools-desktop fuse make htop gettext -y
 
 sleep 5s
 ## Setting Time
@@ -266,7 +266,6 @@ git clone https://github.com/dxa4481/WPA2-HalfHandshake-Crack.git
 git clone https://github.com/frohoff/ysoserial.git
 git clone https://github.com/GDSSecurity/Windows-Exploit-Suggester.git
 git clone https://github.com/kennyn510/wpa2-wordlists.git
-git clone https://github.com/micheleg/dash-to-dock.git
 popd
 
 sleep 5s
