@@ -269,8 +269,19 @@ git clone https://github.com/kennyn510/wpa2-wordlists.git
 popd
 
 sleep 5s
+## Setting dock things
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Setting the Dock" 
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-fixed true
+gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide-mode 'ALL_WINDOWS'
+gsettings set org.gnome.shell.extensions.dash-to-dock height-fraction 1
+gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode FIXED
+gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 28
+
+sleep 5s
 ## RubberDucky tools for offline payload generation
-(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL})  Cloning Rubberducky tools" 
+(( STAGE++ )); echo -e "\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Cloning Rubberducky tools" 
 pushd /opt
 git clone https://github.com/hak5darren/USB-Rubber-Ducky
 popd
