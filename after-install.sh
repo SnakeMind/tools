@@ -146,7 +146,7 @@ apt -qq install tor deb.torproject.org-keyring
 sleep 5s
 ## Install VMware tools
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing open-vm-tools and shizzle."
-apt -qq install open-vm-tools open-vm-tools-desktop fuse make htop gettext -y
+apt -qq install open-vm-tools open-vm-tools-desktop fuse make htop gettext realtek-rtl88xxau-dkms -y
 
 sleep 5s
 ## Setting Time
