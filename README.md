@@ -1,5 +1,6 @@
-# kali-tools
-Tools I use in Kali, to make my life a bit easier.
+# tools
+Tools I use (mostly in Kali), to make my life a bit easier.
+Nowadays I will also add my non-kali scripts here.
 
 ##### after-install.sh
 This script is solely for a freshly installed Kali VM.
