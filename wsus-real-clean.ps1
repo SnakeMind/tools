@@ -1,5 +1,7 @@
 # Meant to run on the WSUS server itself.
 # Run as admin, and run Server Cleanup from WSUS Manager Options afterwards to delete the "mark for deletion" files.
+# It is declining everything for Windows builds 1803 and before as those should not be used anyway.
+# Also removing en-GB versions as -my personal needs- only need the en-US versions.
 
 $Computer = $env:COMPUTERNAME
 $Domain = $env:USERDNSDOMAIN
@@ -28,7 +30,7 @@ foreach ($u1 in $u )
 
 {
 
-if ($u1.IsSuperseded -eq 'True' -Or $u1.Title -like '*Itanium*' -Or $u1.Title -like '*ARM64*')
+if ($u1.IsSuperseded -eq 'True' -Or $u1.Title -like '*Itanium*' -Or $u1.Title -like '*ARM64*' -Or $u1.Title -like '*en-gb*' -Or $u1.Title -like '*Version 1511*' -Or $u1.Title -like '*Version 1607*' -Or $u1.Title -like '*Version 1703*' -Or $u1.Title -like '*Version 1709*' -Or $u1.Title -like '*Version 1803*')
 
 {
 
