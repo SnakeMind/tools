@@ -2,6 +2,17 @@
 """
 Multi-Protocol Network Listener
 Collects syslog, Windows events, and NetFlow data on different ports and writes them to separate log files.
+
+# Generate self-signed certificate
+openssl req -x509 -newkey rsa:4096 -nodes \
+  -keyout /etc/ssl/private/server.key \
+  -out /etc/ssl/certs/server.crt \
+  -days 365 -subj "/CN=logcollector"
+
+# Set proper permissions
+chmod 600 /etc/ssl/private/server.key
+chmod 644 /etc/ssl/certs/server.crt
+
 """
 
 import socket
